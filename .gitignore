@@ -1,0 +1,7 @@
+.DS_Store
+.tmp
+*.a
+.*.pem
+build
+xcuserdata
+Vendor/openssl/

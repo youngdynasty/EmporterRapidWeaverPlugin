@@ -1,0 +1,6 @@
+[submodule "Vendor/EmporterKit"]
+	path = Vendor/EmporterKit
+	url = https://github.com/youngdynasty/EmporterKit
+[submodule "Vendor/RWPluginKit"]
+	path = Vendor/RWPluginKit
+	url = https://github.com/realmacsoftware/RWPluginKit

@@ -1,0 +1,792 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A6372FE32305A637004CD746 /* ERBigButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6372FDE2305A637004CD746 /* ERBigButtonCell.m */; };
+		A6372FE42305A637004CD746 /* ERBigButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6372FDE2305A637004CD746 /* ERBigButtonCell.m */; };
+		A6372FE52305A637004CD746 /* ERTunnelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6372FE02305A637004CD746 /* ERTunnelViewController.m */; };
+		A6372FE62305A637004CD746 /* ERTunnelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6372FE02305A637004CD746 /* ERTunnelViewController.m */; };
+		A6372FE72305A637004CD746 /* ERTunnelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6372FE22305A637004CD746 /* ERTunnelViewController.xib */; };
+		A6372FE82305A637004CD746 /* ERTunnelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6372FE22305A637004CD746 /* ERTunnelViewController.xib */; };
+		A6372FEA2305B024004CD746 /* ERWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6372FE92305B024004CD746 /* ERWelcomeViewController.xib */; };
+		A6372FEB2305B024004CD746 /* ERWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6372FE92305B024004CD746 /* ERWelcomeViewController.xib */; };
+		A6372FEE2305B039004CD746 /* ERWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6372FED2305B039004CD746 /* ERWelcomeViewController.m */; };
+		A6372FEF2305B039004CD746 /* ERWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6372FED2305B039004CD746 /* ERWelcomeViewController.m */; };
+		A63F764A22AD453E00B4EE05 /* libEmporterKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D1BB68229979E1000EB116 /* libEmporterKit.a */; };
+		A646529F22DA6E9E008449F8 /* ERTunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = A646529E22DA6E9E008449F8 /* ERTunnel.m */; };
+		A64652A022DA6E9E008449F8 /* ERTunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = A646529E22DA6E9E008449F8 /* ERTunnel.m */; };
+		A6D100032305B2200077A7D9 /* ERMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D100022305B2200077A7D9 /* ERMainViewController.m */; };
+		A6D100042305B2200077A7D9 /* ERMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D100022305B2200077A7D9 /* ERMainViewController.m */; };
+		A6D1000E2305CF5A0077A7D9 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6D1000D2305CF5A0077A7D9 /* AppIcon.icns */; };
+		A6D1000F2305CF5A0077A7D9 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6D1000D2305CF5A0077A7D9 /* AppIcon.icns */; };
+		A6D1BB70229979F3000EB116 /* libEmporterKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D1BB68229979E1000EB116 /* libEmporterKit.a */; };
+		A6D1BB7322997AD8000EB116 /* ERPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1BB7222997AD8000EB116 /* ERPlugin.m */; };
+		A6D1BB7C22997E05000EB116 /* RMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D1BB7622997C5A000EB116 /* RMKit.framework */; };
+		A6D1BB7D22997E05000EB116 /* RWKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D1BB7522997C5A000EB116 /* RWKit.framework */; };
+		A6D1BB8B229AD463000EB116 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1BB8A229AD463000EB116 /* AppDelegate.m */; };
+		A6D1BB8D229AD464000EB116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6D1BB8C229AD464000EB116 /* Assets.xcassets */; };
+		A6D1BB90229AD464000EB116 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6D1BB8E229AD464000EB116 /* MainMenu.xib */; };
+		A6D1BB93229AD464000EB116 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1BB92229AD464000EB116 /* main.m */; };
+		A6D1BB9A229AD48A000EB116 /* YDProcessNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1BB99229AD48A000EB116 /* YDProcessNode.m */; };
+		A6D1BB9B229AD48A000EB116 /* YDProcessNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1BB99229AD48A000EB116 /* YDProcessNode.m */; };
+		A6D1BBA4229AEC7F000EB116 /* ERPreviewServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1BBA3229AEC7F000EB116 /* ERPreviewServerManager.m */; };
+		A6D1BBA5229AEC7F000EB116 /* ERPreviewServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1BBA3229AEC7F000EB116 /* ERPreviewServerManager.m */; };
+		A6DEE5CB229B127200D0BC85 /* ERPreviewServerManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DEE5CA229B127200D0BC85 /* ERPreviewServerManagerTests.m */; };
+		A6DEE5D0229B136800D0BC85 /* ERPreviewServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1BBA3229AEC7F000EB116 /* ERPreviewServerManager.m */; };
+		A6DEE5D1229B136B00D0BC85 /* YDProcessNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1BB99229AD48A000EB116 /* YDProcessNode.m */; };
+		A6DEE5D6229B246500D0BC85 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = A6DEE5D5229B246400D0BC85 /* Data */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A6D1BB67229979E1000EB116 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6D1BB61229979E1000EB116 /* EmporterKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A6FD1774224AB1DA00F3CB9B;
+			remoteInfo = EmporterKit;
+		};
+		A6D1BB69229979E1000EB116 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6D1BB61229979E1000EB116 /* EmporterKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A6FD1789224AB39800F3CB9B;
+			remoteInfo = EmporterKitTests;
+		};
+		A6D1BB6B229979E1000EB116 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6D1BB61229979E1000EB116 /* EmporterKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A6FD1799224AB49500F3CB9B;
+			remoteInfo = EmporterKitTestHost;
+		};
+		A6D1BB6D229979F0000EB116 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6D1BB61229979E1000EB116 /* EmporterKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A6FD1773224AB1DA00F3CB9B;
+			remoteInfo = EmporterKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A6DEE5BF229B00FD00D0BC85 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A6372FDE2305A637004CD746 /* ERBigButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ERBigButtonCell.m; sourceTree = "<group>"; };
+		A6372FDF2305A637004CD746 /* ERTunnelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERTunnelViewController.h; sourceTree = "<group>"; };
+		A6372FE02305A637004CD746 /* ERTunnelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ERTunnelViewController.m; sourceTree = "<group>"; };
+		A6372FE12305A637004CD746 /* ERBigButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERBigButtonCell.h; sourceTree = "<group>"; };
+		A6372FE22305A637004CD746 /* ERTunnelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ERTunnelViewController.xib; sourceTree = "<group>"; };
+		A6372FE92305B024004CD746 /* ERWelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ERWelcomeViewController.xib; sourceTree = "<group>"; };
+		A6372FEC2305B039004CD746 /* ERWelcomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERWelcomeViewController.h; sourceTree = "<group>"; };
+		A6372FED2305B039004CD746 /* ERWelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERWelcomeViewController.m; sourceTree = "<group>"; };
+		A646529D22DA6E9E008449F8 /* ERTunnel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERTunnel.h; sourceTree = "<group>"; };
+		A646529E22DA6E9E008449F8 /* ERTunnel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERTunnel.m; sourceTree = "<group>"; };
+		A6D100012305B2200077A7D9 /* ERMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERMainViewController.h; sourceTree = "<group>"; };
+		A6D100022305B2200077A7D9 /* ERMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERMainViewController.m; sourceTree = "<group>"; };
+		A6D1000D2305CF5A0077A7D9 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		A6D1BB2E22997953000EB116 /* Emporter.rapidweaverplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Emporter.rapidweaverplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6D1BB3122997953000EB116 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6D1BB61229979E1000EB116 /* EmporterKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = EmporterKit.xcodeproj; path = EmporterKit/EmporterKit.xcodeproj; sourceTree = "<group>"; };
+		A6D1BB7122997AD8000EB116 /* ERPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERPlugin.h; sourceTree = "<group>"; };
+		A6D1BB7222997AD8000EB116 /* ERPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERPlugin.m; sourceTree = "<group>"; };
+		A6D1BB7522997C5A000EB116 /* RWKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RWKit.framework; path = RWPluginKit/Frameworks/RWKit.framework; sourceTree = "<group>"; };
+		A6D1BB7622997C5A000EB116 /* RMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RMKit.framework; path = RWPluginKit/Frameworks/RMKit.framework; sourceTree = "<group>"; };
+		A6D1BB7F22997E37000EB116 /* Fragaria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fragaria.h; sourceTree = "<group>"; };
+		A6D1BB87229AD463000EB116 /* EmporterRapidWeaverPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmporterRapidWeaverPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6D1BB89229AD463000EB116 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A6D1BB8A229AD463000EB116 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A6D1BB8C229AD464000EB116 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A6D1BB8F229AD464000EB116 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A6D1BB91229AD464000EB116 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6D1BB92229AD464000EB116 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A6D1BB94229AD464000EB116 /* EmporterRapidWeaverPlayground.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EmporterRapidWeaverPlayground.entitlements; sourceTree = "<group>"; };
+		A6D1BB98229AD48A000EB116 /* YDProcessNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YDProcessNode.h; sourceTree = "<group>"; };
+		A6D1BB99229AD48A000EB116 /* YDProcessNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YDProcessNode.m; sourceTree = "<group>"; };
+		A6D1BBA2229AEC7F000EB116 /* ERPreviewServerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERPreviewServerManager.h; sourceTree = "<group>"; };
+		A6D1BBA3229AEC7F000EB116 /* ERPreviewServerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERPreviewServerManager.m; sourceTree = "<group>"; };
+		A6DEE5C8229B127200D0BC85 /* EmporterRapidWeaverPluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmporterRapidWeaverPluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6DEE5CA229B127200D0BC85 /* ERPreviewServerManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERPreviewServerManagerTests.m; sourceTree = "<group>"; };
+		A6DEE5CC229B127200D0BC85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6DEE5D5229B246400D0BC85 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A6D1BB2B22997953000EB116 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6D1BB70229979F3000EB116 /* libEmporterKit.a in Frameworks */,
+				A6D1BB7C22997E05000EB116 /* RMKit.framework in Frameworks */,
+				A6D1BB7D22997E05000EB116 /* RWKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6D1BB84229AD463000EB116 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A63F764A22AD453E00B4EE05 /* libEmporterKit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6DEE5C5229B127200D0BC85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A6372FCF2305A0DE004CD746 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			path = Support/Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		A6372FD22305A0ED004CD746 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A6D1000D2305CF5A0077A7D9 /* AppIcon.icns */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A6372FDD2305A637004CD746 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A6372FE12305A637004CD746 /* ERBigButtonCell.h */,
+				A6372FDE2305A637004CD746 /* ERBigButtonCell.m */,
+				A6D100012305B2200077A7D9 /* ERMainViewController.h */,
+				A6D100022305B2200077A7D9 /* ERMainViewController.m */,
+				A6372FDF2305A637004CD746 /* ERTunnelViewController.h */,
+				A6372FE02305A637004CD746 /* ERTunnelViewController.m */,
+				A6372FE22305A637004CD746 /* ERTunnelViewController.xib */,
+				A6372FEC2305B039004CD746 /* ERWelcomeViewController.h */,
+				A6372FED2305B039004CD746 /* ERWelcomeViewController.m */,
+				A6372FE92305B024004CD746 /* ERWelcomeViewController.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A6D1BB2522997953000EB116 = {
+			isa = PBXGroup;
+			children = (
+				A6D1BB3022997953000EB116 /* EmporterRapidWeaverPlugin */,
+				A6D1BB7E22997E37000EB116 /* Support */,
+				A6DEE5C9229B127200D0BC85 /* Tests */,
+				A6D1BB37229979DD000EB116 /* Vendor */,
+				A6D1BB2F22997953000EB116 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A6D1BB2F22997953000EB116 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A6D1BB2E22997953000EB116 /* Emporter.rapidweaverplugin */,
+				A6D1BB87229AD463000EB116 /* EmporterRapidWeaverPlayground.app */,
+				A6DEE5C8229B127200D0BC85 /* EmporterRapidWeaverPluginTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A6D1BB3022997953000EB116 /* EmporterRapidWeaverPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				A6372FDD2305A637004CD746 /* UI */,
+				A6D1BB7122997AD8000EB116 /* ERPlugin.h */,
+				A6D1BB7222997AD8000EB116 /* ERPlugin.m */,
+				A6D1BBA2229AEC7F000EB116 /* ERPreviewServerManager.h */,
+				A6D1BBA3229AEC7F000EB116 /* ERPreviewServerManager.m */,
+				A646529D22DA6E9E008449F8 /* ERTunnel.h */,
+				A646529E22DA6E9E008449F8 /* ERTunnel.m */,
+				A6D1BB3122997953000EB116 /* Info.plist */,
+			);
+			path = EmporterRapidWeaverPlugin;
+			sourceTree = "<group>";
+		};
+		A6D1BB37229979DD000EB116 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				A6D1BB7622997C5A000EB116 /* RMKit.framework */,
+				A6D1BB7522997C5A000EB116 /* RWKit.framework */,
+				A6D1BB61229979E1000EB116 /* EmporterKit.xcodeproj */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		A6D1BB62229979E1000EB116 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A6D1BB68229979E1000EB116 /* libEmporterKit.a */,
+				A6D1BB6A229979E1000EB116 /* EmporterKitTests.xctest */,
+				A6D1BB6C229979E1000EB116 /* EmporterKitTestHost.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A6D1BB7E22997E37000EB116 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A6D1BB88229AD463000EB116 /* Playground */,
+				A6372FD22305A0ED004CD746 /* Resources */,
+				A6D1BB7F22997E37000EB116 /* Fragaria.h */,
+				A6D1BB98229AD48A000EB116 /* YDProcessNode.h */,
+				A6D1BB99229AD48A000EB116 /* YDProcessNode.m */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		A6D1BB88229AD463000EB116 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				A6372FCF2305A0DE004CD746 /* Resources */,
+				A6D1BB89229AD463000EB116 /* AppDelegate.h */,
+				A6D1BB8A229AD463000EB116 /* AppDelegate.m */,
+				A6D1BB8C229AD464000EB116 /* Assets.xcassets */,
+				A6D1BB8E229AD464000EB116 /* MainMenu.xib */,
+				A6D1BB91229AD464000EB116 /* Info.plist */,
+				A6D1BB92229AD464000EB116 /* main.m */,
+				A6D1BB94229AD464000EB116 /* EmporterRapidWeaverPlayground.entitlements */,
+			);
+			path = Playground;
+			sourceTree = "<group>";
+		};
+		A6DEE5C9229B127200D0BC85 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A6DEE5D5229B246400D0BC85 /* Data */,
+				A6DEE5CA229B127200D0BC85 /* ERPreviewServerManagerTests.m */,
+				A6DEE5CC229B127200D0BC85 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A6D1BB2D22997953000EB116 /* EmporterRapidWeaverPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6D1BB3422997953000EB116 /* Build configuration list for PBXNativeTarget "EmporterRapidWeaverPlugin" */;
+			buildPhases = (
+				A6D1BB2A22997953000EB116 /* Sources */,
+				A6D1BB2B22997953000EB116 /* Frameworks */,
+				A6D1BB2C22997953000EB116 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6D1BB6E229979F0000EB116 /* PBXTargetDependency */,
+			);
+			name = EmporterRapidWeaverPlugin;
+			productName = EmporterRapidWeaverPlugin;
+			productReference = A6D1BB2E22997953000EB116 /* Emporter.rapidweaverplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+		A6D1BB86229AD463000EB116 /* EmporterRapidWeaverPlayground */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6D1BB95229AD464000EB116 /* Build configuration list for PBXNativeTarget "EmporterRapidWeaverPlayground" */;
+			buildPhases = (
+				A6D1BB83229AD463000EB116 /* Sources */,
+				A6D1BB84229AD463000EB116 /* Frameworks */,
+				A6D1BB85229AD463000EB116 /* Resources */,
+				A6DEE5BF229B00FD00D0BC85 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EmporterRapidWeaverPlayground;
+			productName = EmporterRapidWeaverPlayground;
+			productReference = A6D1BB87229AD463000EB116 /* EmporterRapidWeaverPlayground.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A6DEE5C7229B127200D0BC85 /* EmporterRapidWeaverPluginTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6DEE5CD229B127200D0BC85 /* Build configuration list for PBXNativeTarget "EmporterRapidWeaverPluginTests" */;
+			buildPhases = (
+				A6DEE5C4229B127200D0BC85 /* Sources */,
+				A6DEE5C5229B127200D0BC85 /* Frameworks */,
+				A6DEE5C6229B127200D0BC85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EmporterRapidWeaverPluginTests;
+			productName = EmporterRapidWeaverPluginTests;
+			productReference = A6DEE5C8229B127200D0BC85 /* EmporterRapidWeaverPluginTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A6D1BB2622997953000EB116 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Young Dynasty";
+				TargetAttributes = {
+					A6D1BB2D22997953000EB116 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					A6D1BB86229AD463000EB116 = {
+						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					A6DEE5C7229B127200D0BC85 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+				};
+			};
+			buildConfigurationList = A6D1BB2922997953000EB116 /* Build configuration list for PBXProject "EmporterRapidWeaverPlugin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A6D1BB2522997953000EB116;
+			productRefGroup = A6D1BB2F22997953000EB116 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A6D1BB62229979E1000EB116 /* Products */;
+					ProjectRef = A6D1BB61229979E1000EB116 /* EmporterKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				A6D1BB2D22997953000EB116 /* EmporterRapidWeaverPlugin */,
+				A6D1BB86229AD463000EB116 /* EmporterRapidWeaverPlayground */,
+				A6DEE5C7229B127200D0BC85 /* EmporterRapidWeaverPluginTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A6D1BB68229979E1000EB116 /* libEmporterKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libEmporterKit.a;
+			remoteRef = A6D1BB67229979E1000EB116 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A6D1BB6A229979E1000EB116 /* EmporterKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = EmporterKitTests.xctest;
+			remoteRef = A6D1BB69229979E1000EB116 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A6D1BB6C229979E1000EB116 /* EmporterKitTestHost.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = EmporterKitTestHost.app;
+			remoteRef = A6D1BB6B229979E1000EB116 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A6D1BB2C22997953000EB116 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6372FE72305A637004CD746 /* ERTunnelViewController.xib in Resources */,
+				A6372FEA2305B024004CD746 /* ERWelcomeViewController.xib in Resources */,
+				A6D1000E2305CF5A0077A7D9 /* AppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6D1BB85229AD463000EB116 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6D1000F2305CF5A0077A7D9 /* AppIcon.icns in Resources */,
+				A6372FEB2305B024004CD746 /* ERWelcomeViewController.xib in Resources */,
+				A6372FE82305A637004CD746 /* ERTunnelViewController.xib in Resources */,
+				A6D1BB8D229AD464000EB116 /* Assets.xcassets in Resources */,
+				A6D1BB90229AD464000EB116 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6DEE5C6229B127200D0BC85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6DEE5D6229B246500D0BC85 /* Data in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A6D1BB2A22997953000EB116 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6372FE32305A637004CD746 /* ERBigButtonCell.m in Sources */,
+				A6D1BB9A229AD48A000EB116 /* YDProcessNode.m in Sources */,
+				A6372FE52305A637004CD746 /* ERTunnelViewController.m in Sources */,
+				A6D1BB7322997AD8000EB116 /* ERPlugin.m in Sources */,
+				A6D100032305B2200077A7D9 /* ERMainViewController.m in Sources */,
+				A646529F22DA6E9E008449F8 /* ERTunnel.m in Sources */,
+				A6372FEE2305B039004CD746 /* ERWelcomeViewController.m in Sources */,
+				A6D1BBA4229AEC7F000EB116 /* ERPreviewServerManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6D1BB83229AD463000EB116 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6372FE42305A637004CD746 /* ERBigButtonCell.m in Sources */,
+				A6D1BB93229AD464000EB116 /* main.m in Sources */,
+				A6372FE62305A637004CD746 /* ERTunnelViewController.m in Sources */,
+				A64652A022DA6E9E008449F8 /* ERTunnel.m in Sources */,
+				A6D1BB8B229AD463000EB116 /* AppDelegate.m in Sources */,
+				A6D1BB9B229AD48A000EB116 /* YDProcessNode.m in Sources */,
+				A6372FEF2305B039004CD746 /* ERWelcomeViewController.m in Sources */,
+				A6D1BBA5229AEC7F000EB116 /* ERPreviewServerManager.m in Sources */,
+				A6D100042305B2200077A7D9 /* ERMainViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6DEE5C4229B127200D0BC85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6DEE5CB229B127200D0BC85 /* ERPreviewServerManagerTests.m in Sources */,
+				A6DEE5D0229B136800D0BC85 /* ERPreviewServerManager.m in Sources */,
+				A6DEE5D1229B136B00D0BC85 /* YDProcessNode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A6D1BB6E229979F0000EB116 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EmporterKit;
+			targetProxy = A6D1BB6D229979F0000EB116 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A6D1BB8E229AD464000EB116 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A6D1BB8F229AD464000EB116 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A6D1BB3222997953000EB116 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A6D1BB3322997953000EB116 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A6D1BB3522997953000EB116 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EEQTQC5N2L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/RWPluginKit/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "Vendor/EmporterKit/**";
+				INFOPLIST_FILE = EmporterRapidWeaverPlugin/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = net.youngdynasty.emporter.rapidweaverplugin;
+				PRODUCT_NAME = Emporter;
+				SKIP_INSTALL = NO;
+				WRAPPER_EXTENSION = rapidweaverplugin;
+			};
+			name = Debug;
+		};
+		A6D1BB3622997953000EB116 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EEQTQC5N2L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/RWPluginKit/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "Vendor/EmporterKit/**";
+				INFOPLIST_FILE = EmporterRapidWeaverPlugin/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = net.youngdynasty.emporter.rapidweaverplugin;
+				PRODUCT_NAME = Emporter;
+				SKIP_INSTALL = NO;
+				WRAPPER_EXTENSION = rapidweaverplugin;
+			};
+			name = Release;
+		};
+		A6D1BB96229AD464000EB116 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Support/Playground/EmporterRapidWeaverPlayground.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3CQQD935X4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/RWPluginKit/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "Vendor/EmporterKit/**";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Playground/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.youngdynasty.EmporterRapidWeaverPlayground;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A6D1BB97229AD464000EB116 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Support/Playground/EmporterRapidWeaverPlayground.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3CQQD935X4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/RWPluginKit/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "Vendor/EmporterKit/**";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Playground/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.youngdynasty.EmporterRapidWeaverPlayground;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A6DEE5CE229B127200D0BC85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EEQTQC5N2L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/RWPluginKit/Frameworks",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.youngdynasty.EmporterRapidWeaverPluginTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A6DEE5CF229B127200D0BC85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EEQTQC5N2L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/RWPluginKit/Frameworks",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.youngdynasty.EmporterRapidWeaverPluginTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A6D1BB2922997953000EB116 /* Build configuration list for PBXProject "EmporterRapidWeaverPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6D1BB3222997953000EB116 /* Debug */,
+				A6D1BB3322997953000EB116 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6D1BB3422997953000EB116 /* Build configuration list for PBXNativeTarget "EmporterRapidWeaverPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6D1BB3522997953000EB116 /* Debug */,
+				A6D1BB3622997953000EB116 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6D1BB95229AD464000EB116 /* Build configuration list for PBXNativeTarget "EmporterRapidWeaverPlayground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6D1BB96229AD464000EB116 /* Debug */,
+				A6D1BB97229AD464000EB116 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6DEE5CD229B127200D0BC85 /* Build configuration list for PBXNativeTarget "EmporterRapidWeaverPluginTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6DEE5CE229B127200D0BC85 /* Debug */,
+				A6DEE5CF229B127200D0BC85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A6D1BB2622997953000EB116 /* Project object */;
+}
