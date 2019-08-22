@@ -73,8 +73,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** A human-readable message describing why a remote URL could not be created. This value is non-nil only when the state is \c EmporterTunnelStateConflicted. */
 @property(nonatomic,nullable,readonly) NSString *conflictReason;
 
-/** Create the tunnel in Emporter. The completion handler is invoked in a background queue. */
-- (void)createWithCompletionHandler:(void(^)(NSError *__nullable))completionHandler;
+/** Publish the tunnel. The completion handler is invoked in a background queue. */
+- (void)publishWithCompletionHandler:(void(^)(NSError *__nullable))completionHandler;
 
 /** Dispose the current tunnel in Emporter. */
 - (void)dispose;

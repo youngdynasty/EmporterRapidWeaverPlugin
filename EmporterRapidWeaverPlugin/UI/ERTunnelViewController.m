@@ -11,7 +11,7 @@
 #import "ERService.h"
 
 @interface ERTunnelViewController()
-@property(nonatomic) NSUInteger createCount;
+@property(nonatomic) NSUInteger publishCount;
 @property(nonatomic,readonly) BOOL isBusy;
 @property(nonatomic,readonly) NSString *selectedTabIdentifier;
 @end
@@ -88,11 +88,11 @@
 }
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingIsBusy {
-    return [NSSet setWithObjects:@"createCount", @"tunnel.state", @"tunnel.service.state", nil];
+    return [NSSet setWithObjects:@"publishCount", @"tunnel.state", @"tunnel.service.state", nil];
 }
 
 - (BOOL)isBusy {
-    if (_createCount > 0) {
+    if (_publishCount > 0) {
         return YES;
     }
     
@@ -108,15 +108,15 @@
 #pragma mark - Actions
 
 - (IBAction)startSharing:(id)sender {
-    self.createCount++;
+    self.publishCount++;
     
-    [_tunnel createWithCompletionHandler:^(NSError *error) {
+    [_tunnel publishWithCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error != nil) {
                 [[NSAlert alertWithError:error] runModal];
             }
             
-            self.createCount--;
+            self.publishCount--;
         });
     }];
 }

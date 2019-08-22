@@ -111,7 +111,7 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
                        @"localURL": NSStringFromSelector(@selector(_localURLDidChange)),
                        @"name": NSStringFromSelector(@selector(_nameDidChange)),
                        @"service.state": NSStringFromSelector(@selector(_serviceStateDidChange)),
-                       @"currentTunnel": NSStringFromSelector(@selector(_reloadState))
+                       @"currentTunnel": NSStringFromSelector(@selector(_reloadState)),
                        };
     });
     return bindingMap;
@@ -138,15 +138,24 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
 
 #pragma mark - Actions
 
-- (void)createWithCompletionHandler:(void(^)(NSError *))completionHandler {
+- (void)publishWithCompletionHandler:(void(^)(NSError *))completionHandler {
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
 
+    // Get current tunnel from main thread asynchronously
+    __block EmporterTunnel *tunnel = nil;
+    dispatch_semaphore_t tunnelSemaphore = dispatch_semaphore_create(1);
+    void (^readTunnel)(void) = ^{
+        tunnel = self._currentTunnel;
+        dispatch_semaphore_signal(tunnelSemaphore);
+    };
+    
+    [NSThread isMainThread] ? readTunnel() : dispatch_group_async(group, dispatch_get_main_queue(), readTunnel);
+    
     // Submit to Emporter in background
     __block NSError *error = nil;
-    __block EmporterTunnel *tunnel = nil;
-
     dispatch_group_async(group, backgroundQueue, ^{
+        // Restart service if needed
         switch (self.service.state) {
             case EmporterServiceStateSuspended:
             case EmporterServiceStateConflicted:
@@ -157,18 +166,23 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
                 break;
         }
         
-        tunnel = [self.service _createTunnel:self error:&error];
+        // Wait for existing tunnel to load
+        dispatch_semaphore_wait(tunnelSemaphore, DISPATCH_TIME_FOREVER);
+        
+        // Create a new tunnel if needed
+        tunnel = tunnel ?: [self.service _createTunnel:self error:&error];
         if (tunnel == nil) {
             return;
         }
         
-        // Update state on main thread and discard result if needed
+        // Re-enable existing tunnel if needed
+        if (!tunnel.isEnabled) {
+            tunnel.isEnabled = YES;
+        }
+        
+        // Update state on main thread
         dispatch_group_async(group, dispatch_get_main_queue(), ^{
-            if (self._currentTunnel == nil) {
-                self._currentTunnel = tunnel;
-            } else {
-                [tunnel delete];
-            }
+            self._currentTunnel = tunnel;
         });
     });
     
@@ -179,16 +193,27 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
 }
 
 - (void)dispose {
-    dispatch_assert_queue(dispatch_get_main_queue());
-    
-    if ([Emporter isRunning] && _currentTunnel != nil) {
-        [_currentTunnel delete];
-    }
-    
     self._currentTunnel = nil;
 }
 
 #pragma mark - Synchronization
+
+- (void)_setCurrentTunnel:(EmporterTunnel *)currentTunnel {
+    dispatch_assert_queue(dispatch_get_main_queue());
+    
+    if (_currentTunnel == currentTunnel) {
+        return;
+    }
+    
+    [self willChangeValueForKey:@"currentTunnel"];
+    
+    if (_currentTunnel != nil && [Emporter isRunning]) {
+        [_currentTunnel delete];
+    }
+    _currentTunnel = currentTunnel;
+    
+    [self didChangeValueForKey:@"currentTunnel"];
+}
 
 - (void)_localURLDidChange {
     dispatch_assert_queue(dispatch_get_main_queue());
