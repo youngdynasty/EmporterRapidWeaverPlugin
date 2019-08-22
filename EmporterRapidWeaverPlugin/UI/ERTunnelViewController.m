@@ -13,6 +13,7 @@
 @interface ERTunnelViewController()
 @property(nonatomic) NSUInteger publishCount;
 @property(nonatomic,readonly) BOOL isBusy;
+@property(nonatomic,readonly) BOOL hideCreateButton;
 @property(nonatomic,readonly) NSString *selectedTabIdentifier;
 @end
 
@@ -103,6 +104,14 @@
         default:
             return _tunnel.service.state == EmporterServiceStateConnecting;
     }
+}
+
++ (NSSet<NSString *> *)keyPathsForValuesAffectingHideCreateButton {
+    return [NSSet setWithObjects:@"isBusy", @"publishCount", @"tunnel.isPublished", nil];
+}
+
+- (BOOL)hideCreateButton {
+    return self.isBusy && _publishCount == 0 && !_tunnel.isPublished;
 }
 
 #pragma mark - Actions

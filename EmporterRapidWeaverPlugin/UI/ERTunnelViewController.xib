@@ -74,7 +74,7 @@
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Suspended" identifier="suspended" id="Mcr-Te-f8D">
-                            <view key="view" id="dh4-xV-lbS">
+                            <view key="view" ambiguous="YES" id="dh4-xV-lbS">
                                 <rect key="frame" x="0.0" y="0.0" width="673" height="399"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -136,6 +136,7 @@ DQ
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="startSharing:" target="-2" id="V8Y-g1-Ltd"/>
+                                                        <binding destination="-2" name="hidden" keyPath="self.hideCreateButton" previousBinding="4bf-H3-uPb" id="6nr-RJ-0EQ"/>
                                                         <binding destination="-2" name="enabled" keyPath="self.isBusy" id="4bf-H3-uPb">
                                                             <dictionary key="options">
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -158,7 +159,7 @@ DQ
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Error" identifier="error" id="YW9-ZB-PKc" userLabel="Error">
-                            <view key="view" ambiguous="YES" id="ByZ-2J-oYf">
+                            <view key="view" id="ByZ-2J-oYf">
                                 <rect key="frame" x="0.0" y="0.0" width="673" height="399"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>

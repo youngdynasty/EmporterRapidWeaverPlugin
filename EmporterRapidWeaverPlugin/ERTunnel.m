@@ -139,6 +139,14 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
     }
 }
 
++ (NSSet<NSString *> *)keyPathsForValuesAffectingIsPublished {
+    return [NSSet setWithObject:@"currentTunnel"];
+}
+
+- (BOOL)isPublished {
+    return _currentTunnel != nil;
+}
+
 #pragma mark - Actions
 
 - (void)publishWithCompletionHandler:(void(^)(NSError *))completionHandler {
