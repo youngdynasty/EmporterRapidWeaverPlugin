@@ -19,12 +19,12 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tabView fixedFrame="YES" drawsBackground="NO" type="noTabsNoBorder" initialItem="ufY-G0-GAH" translatesAutoresizingMaskIntoConstraints="NO" id="9RC-Gn-YS2">
-                    <rect key="frame" x="89" y="53" width="673" height="399"/>
+                    <rect key="frame" x="88" y="53" width="673" height="399"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="No Preview" identifier="noLocalURL" id="FmW-ay-61r">
-                            <view key="view" ambiguous="YES" id="2JC-DQ-xfU">
+                            <view key="view" id="2JC-DQ-xfU">
                                 <rect key="frame" x="0.0" y="0.0" width="673" height="399"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -36,10 +36,19 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nrC-fc-ISJ">
-                                                    <rect key="frame" x="254" y="212" width="127" height="127"/>
+                                                    <rect key="frame" x="255" y="212" width="127" height="127"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSCaution" id="MfB-un-BvL"/>
                                                 </imageView>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="axX-tp-TeM">
+                                                    <rect key="frame" x="50" y="156" width="533" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Project previews are currently unavailable" id="RGA-ty-pwr">
+                                                        <font key="font" metaFont="system" size="30"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oy6-2M-oGi">
                                                     <rect key="frame" x="18" y="99" width="597" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -58,15 +67,6 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="axX-tp-TeM">
-                                                    <rect key="frame" x="50" y="156" width="533" height="36"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Project previews are currently unavailable" id="RGA-ty-pwr">
-                                                        <font key="font" metaFont="system" size="30"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
                                             </subviews>
                                         </view>
                                     </box>
@@ -74,21 +74,151 @@
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Suspended" identifier="suspended" id="Mcr-Te-f8D">
-                            <view key="view" id="dh4-xV-lbS">
+                            <view key="view" ambiguous="YES" id="dh4-xV-lbS">
                                 <rect key="frame" x="0.0" y="0.0" width="673" height="399"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </view>
-                        </tabViewItem>
-                        <tabViewItem label="Connecting" identifier="connecting" id="ZV5-yb-HZ1">
-                            <view key="view" id="e2O-uh-Ptr">
-                                <rect key="frame" x="0.0" y="0.0" width="673" height="399"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <box fixedFrame="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="kGC-P8-PCo">
+                                        <rect key="frame" x="17" y="16" width="639" height="365"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <view key="contentView" ambiguous="YES" id="vOv-Jt-wzd">
+                                            <rect key="frame" x="3" y="3" width="633" height="359"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-LF-sDM">
+                                                    <rect key="frame" x="253" y="212" width="127" height="127"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="AppIcon" id="NKi-4g-s3d"/>
+                                                </imageView>
+                                                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69k-VQ-25A">
+                                                    <rect key="frame" x="20" y="99" width="593" height="93"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bIm-Cu-XoE">
+                                                            <rect key="frame" x="-2" y="0.0" width="597" height="22"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" alignment="center" title="Ready to share a sneak peak?" id="Vfj-2f-18g">
+                                                                <font key="font" metaFont="systemLight" size="18"/>
+                                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pXf-wg-0gN">
+                                                            <rect key="frame" x="12" y="57" width="569" height="36"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Your project's shared URL is currently offline" id="XSL-Lu-pmb">
+                                                                <font key="font" metaFont="system" size="30"/>
+                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                    <connections>
+                                                        <binding destination="-2" name="hidden" keyPath="self.isBusy" id="2eO-iD-oKA"/>
+                                                    </connections>
+                                                </customView>
+                                                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Qsc-l1-uSa">
+                                                    <rect key="frame" x="300" y="122" width="32" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <connections>
+                                                        <binding destination="-2" name="animate" keyPath="self.isBusy" id="JeL-jY-eml"/>
+                                                    </connections>
+                                                </progressIndicator>
+                                                <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MQD-LT-x9h">
+                                                    <rect key="frame" x="189" y="24" width="254" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="smallSquare" title="Create Shareable URL" bezelStyle="smallSquare" alignment="center" state="on" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="oab-Cb-r8K" customClass="ERBigButtonCell">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="systemSemibold" size="14"/>
+                                                        <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="startSharing:" target="-2" id="V8Y-g1-Ltd"/>
+                                                        <binding destination="-2" name="enabled" keyPath="self.isBusy" id="4bf-H3-uPb">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </button>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GxR-lG-0X3">
+                                                    <rect key="frame" x="317" y="212" width="54" height="54"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSCaution" id="ira-tA-Wja"/>
+                                                    <connections>
+                                                        <binding destination="-2" name="hidden" keyPath="self.isBusy" id="xL9-Y3-brY"/>
+                                                    </connections>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                    </box>
+                                </subviews>
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Error" identifier="error" id="YW9-ZB-PKc" userLabel="Error">
                             <view key="view" id="ByZ-2J-oYf">
                                 <rect key="frame" x="0.0" y="0.0" width="673" height="399"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <box fixedFrame="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="16p-Nk-qxb">
+                                        <rect key="frame" x="17" y="16" width="639" height="365"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <view key="contentView" ambiguous="YES" id="48i-Vh-zkc">
+                                            <rect key="frame" x="3" y="3" width="633" height="359"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6cU-tJ-nB1">
+                                                    <rect key="frame" x="253" y="212" width="127" height="127"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSCaution" id="DMJ-3D-gYP"/>
+                                                </imageView>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qTT-ub-8s2">
+                                                    <rect key="frame" x="32" y="156" width="569" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Your project's shared URL is currently offline" id="u9i-dM-uUq">
+                                                        <font key="font" metaFont="system" size="30"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YCQ-Kj-TI5">
+                                                    <rect key="frame" x="18" y="99" width="597" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" alignment="center" title="This label will decribe the problem (and how to solve it) in one line." id="D5C-af-8KT">
+                                                        <font key="font" metaFont="systemLight" size="18"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="-2" name="displayPatternValue1" keyPath="self.tunnel.serviceConflictReason" id="KYE-Do-kz6">
+                                                            <dictionary key="options">
+                                                                <string key="NSDisplayPattern">%{value1}@%{value2}@</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="displayPatternValue2" keyPath="self.tunnel.conflictReason" previousBinding="KYE-Do-kz6" id="mwS-ub-AL9">
+                                                            <dictionary key="options">
+                                                                <string key="NSDisplayPattern">%{value1}@%{value2}@</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </textField>
+                                                <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kRo-zy-cdd">
+                                                    <rect key="frame" x="224" y="24" width="185" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="smallSquare" title="Open Emporter" bezelStyle="smallSquare" alignment="center" state="on" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="eI9-ce-a7J" customClass="ERBigButtonCell">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="systemSemibold" size="14"/>
+                                                        <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                                    </buttonCell>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                    </box>
+                                </subviews>
                             </view>
                         </tabViewItem>
                         <tabViewItem label="Connected" identifier="connected" id="ufY-G0-GAH" userLabel="Connected">
@@ -100,18 +230,6 @@
                                         <rect key="frame" x="108" y="119" width="457" height="187"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zn5-fE-8WO">
-                                                <rect key="frame" x="339" y="13" width="104" height="32"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                <buttonCell key="cell" type="push" title="Share URL" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1gB-fm-0X7">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="startSharing:" target="-2" id="hME-xv-miD"/>
-                                                    <binding destination="-2" name="enabled" keyPath="self.tunnel.isSuspended" id="Apj-XZ-db9"/>
-                                                </connections>
-                                            </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w6K-yv-ibs">
                                                 <rect key="frame" x="14" y="13" width="119" height="32"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -121,11 +239,6 @@
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="stopSharing:" target="-2" id="V8x-OO-CMI"/>
-                                                    <binding destination="-2" name="enabled" keyPath="self.tunnel.isSuspended" id="cQp-Im-Rpy">
-                                                        <dictionary key="options">
-                                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                        </dictionary>
-                                                    </binding>
                                                 </connections>
                                             </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2B-4v-yKR">
@@ -228,12 +341,16 @@
                             </view>
                         </tabViewItem>
                     </tabViewItems>
+                    <connections>
+                        <binding destination="-2" name="selectedIdentifier" keyPath="self.selectedTabIdentifier" id="5de-m1-hlK"/>
+                    </connections>
                 </tabView>
             </subviews>
-            <point key="canvasLocation" x="712" y="270"/>
+            <point key="canvasLocation" x="267" y="291"/>
         </customView>
     </objects>
     <resources>
+        <image name="AppIcon" width="128" height="128"/>
         <image name="NSCaution" width="32" height="32"/>
     </resources>
 </document>

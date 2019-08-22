@@ -13,7 +13,7 @@
     ERMainViewController *_viewController;
 }
 
-+ (NSHashTable *)_instances {
++ (NSHashTable <ERPlugin *>*)_instances {
     static NSHashTable *instances = nil;
     static dispatch_once_t onceToken;
     

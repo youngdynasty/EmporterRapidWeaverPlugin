@@ -54,15 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** An instance of \c ERPreviewServerManager used to resolve local URLs. */
 @property(nonatomic,readonly) ERPreviewServerManager *previewManager;
 
-/** Resume binding the current instance to an Emporter tunnel. */
-- (BOOL)resume:(NSError **__nullable)outError;
-
-/** Suspend binding the current instance to an Emporter tunnel. */
-- (void)suspend;
-
-/** Returns YES if the current instance is not bound to an Emporter tunnel. */
-@property(nonatomic,readonly) BOOL isSuspended;
-
 /** A user-defined name used to create Emporter's URL. */
 @property(nonatomic,nullable,copy) NSString *name;
 
@@ -81,6 +72,27 @@ NS_ASSUME_NONNULL_BEGIN
 /** A human-readable message describing why a remote URL could not be created. This value is non-nil only when the state is \c EmporterTunnelStateConflicted. */
 @property(nonatomic,nullable,readonly) NSString *conflictReason;
 
+/** The current state of the service. */
+@property(nonatomic,readonly) EmporterServiceState serviceState;
+
+/** A human-readable message describing why the service is offline. This value is non-nil only when the serviceState is \c EmporterServiceStateConflicted. */
+@property(nonatomic,readonly) NSString *serviceConflictReason;
+
+/** Create the tunnel in Emporter. */
+- (BOOL)create:(NSError **__nullable)outError;
+
+/** Dispose the current tunnel in Emporter. */
+- (void)dispose;
+
+@end
+
+
+@interface ERTunnel(Service)
+/** Restart the Emporter service
+ \param outError An optional pointer to an error which will be non-nil if the service could not be restarted.
+ \returns YES if the service was restarted.
+ */
++ (BOOL)restartService:(NSError **)outError;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,11 +9,14 @@
 #import "ERTunnelViewController.h"
 #import "ERPreviewServerManager.h"
 
+@interface ERTunnelViewController()
+@property(nonatomic,readonly) BOOL isBusy;
+@property(nonatomic,readonly) NSString *selectedTabIdentifier;
+@end
+
 @implementation ERTunnelViewController {
     IBOutlet NSTabView *__weak _tabView;
 }
-
-static void* kvoContext = &kvoContext;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
@@ -34,29 +37,11 @@ static void* kvoContext = &kvoContext;
         return nil;
     
     _tunnel = tunnel;
-    [_tunnel addObserver:self forKeyPath:@"localURL" options:NSKeyValueObservingOptionNew context:kvoContext];
     
     return self;
 }
 
-- (void)dealloc {
-    [_tunnel removeObserver:self forKeyPath:@"localURL"];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if (context != kvoContext) {
-        return [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-    }
-    
-    [self _reloadViewState];
-}
-
-#pragma mark - View
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self _reloadViewState];
-}
+#pragma mark - View / bindings
 
 - (void)viewDidLayout {
     [super viewDidLayout];
@@ -71,33 +56,70 @@ static void* kvoContext = &kvoContext;
     }
 }
 
-- (void)_reloadViewState {
-    NSString *tabIdentifier = nil;
-    
++ (NSSet<NSString *> *)keyPathsForValuesAffectingSelectedTabIdentifier {
+    return [NSSet setWithObjects:@"tunnel.localURL", @"tunnel.serviceState", @"tunnel.state", nil];
+}
+
+- (NSString *)selectedTabIdentifier {
     if (_tunnel.localURL == nil) {
-        tabIdentifier = @"noLocalURL";
-    } else {
-        // TODO: Add more cases
-        tabIdentifier = @"connected";
+        return @"noLocalURL";
     }
     
-    if (_tabView != nil) {
-        [_tabView selectTabViewItemWithIdentifier:tabIdentifier];
+    switch (_tunnel.serviceState) {
+        case EmporterServiceStateConflicted:
+            return @"error";
+        case EmporterServiceStateConnecting:
+        case EmporterServiceStateSuspended:
+            return @"suspended";
+        case EmporterServiceStateConnected:
+        default:
+            switch (_tunnel.state) {
+                case EmporterTunnelStateConflicted:
+                    return @"error";
+                case EmporterTunnelStateConnected:
+                    return @"connected";
+                default:
+                    return @"suspended";
+            }
     }
 }
 
++ (NSSet<NSString *> *)keyPathsForValuesAffectingIsBusy {
+    return [NSSet setWithObjects:@"tunnel.serviceState", @"tunnel.state", nil];
+}
+
+- (BOOL)isBusy {
+    switch (_tunnel.state) {
+        case EmporterTunnelStateInitializing:
+        case EmporterTunnelStateConnecting:
+            return YES;
+        default:
+            return _tunnel.serviceState == EmporterServiceStateConnecting;
+    }
+}
 
 #pragma mark - Actions
 
-- (IBAction)stopSharing:(id)sender {
-    [_tunnel suspend];
-}
-
 - (IBAction)startSharing:(id)sender {
     NSError *error = nil;
-    if (![_tunnel resume:&error]) {
+    
+    switch (_tunnel.serviceState) {
+        case EmporterServiceStateSuspended:
+        case EmporterServiceStateConflicted:
+            [ERTunnel restartService:&error] && [_tunnel create:&error];
+            break;
+        default:
+            [_tunnel create:&error];
+            break;
+    }
+    
+    if (error != nil) {
         [[NSAlert alertWithError:error] runModal];
     }
+}
+
+- (IBAction)stopSharing:(id)sender {
+    [_tunnel dispose];
 }
 
 - (IBAction)openRemoteURL:(id)sender {
