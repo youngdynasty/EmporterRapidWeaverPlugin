@@ -23,7 +23,9 @@
 
 #pragma mark -
 
-@implementation ERTunnel
+@implementation ERTunnel {
+    NSString *_currentTunnelId;
+}
 @synthesize _currentTunnel = _currentTunnel;
 
 static void* kvoContext = &kvoContext;
@@ -49,18 +51,17 @@ static void* kvoContext = &kvoContext;
     if (self == nil)
         return nil;
     
-    _directoryURL = [directoryURL copy];
-    _previewManager = previewManager;
-    _name = plistValue(plist, @"name", [NSString class]);
-    _state = EmporterTunnelStateDisconnected;
-    
     static ERService *sharedService = nil;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
         sharedService = [[ERService alloc] init];
     });
-
+    
+    _directoryURL = [directoryURL copy];
+    _previewManager = previewManager;
+    _name = plistValue(plist, @"name", [NSString class]);
+    _state = EmporterTunnelStateDisconnected;
     _service = sharedService;
     
     [_previewManager addObserver:self forKeyPath:@"urls" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:kvoContext];
@@ -110,6 +111,7 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
                        @"localURL": NSStringFromSelector(@selector(_localURLDidChange)),
                        @"name": NSStringFromSelector(@selector(_nameDidChange)),
                        @"service.state": NSStringFromSelector(@selector(_serviceStateDidChange)),
+                       @"currentTunnel": NSStringFromSelector(@selector(_reloadState))
                        };
     });
     return bindingMap;
@@ -134,7 +136,7 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
     }
 }
 
-#pragma mark - State
+#pragma mark - Actions
 
 - (void)createWithCompletionHandler:(void(^)(NSError *))completionHandler {
     dispatch_group_t group = dispatch_group_create();
@@ -164,12 +166,11 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
         dispatch_group_async(group, dispatch_get_main_queue(), ^{
             if (self._currentTunnel == nil) {
                 self._currentTunnel = tunnel;
-            } else if (tunnel != nil) {
+            } else {
                 [tunnel delete];
             }
         });
     });
-    
     
     // Invoke callback on background
     dispatch_group_notify(group, backgroundQueue, ^{
@@ -185,9 +186,6 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
     }
     
     self._currentTunnel = nil;
-    self.remoteURL = nil;
-    self.conflictReason = nil;
-    self.state = EmporterTunnelStateDisconnected;
 }
 
 #pragma mark - Synchronization
@@ -217,16 +215,27 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
     }
 }
 
+- (void)_reloadState {
+    if (_currentTunnel != nil) {
+        _currentTunnelId = _currentTunnelId ?: _currentTunnel.id;
+        self.state = _currentTunnel.state;
+        self.conflictReason = _currentTunnel.conflictReason;
+        self.remoteURL = _currentTunnel.remoteUrl != nil ? [NSURL URLWithString:_currentTunnel.remoteUrl] : nil;
+    } else {
+        _currentTunnelId = nil;
+        self.remoteURL = nil;
+        self.conflictReason = nil;
+        self.state = EmporterTunnelStateDisconnected;
+    }
+}
+
 - (BOOL)_isNotificationRelevantToTunnel:(NSNotification *)note{
-    NSString *currentTunnelId = _currentTunnel != nil ? _currentTunnel.id : nil;
-    return currentTunnelId != nil && [currentTunnelId isEqualToString:note.userInfo[EmporterTunnelIdentifierUserInfoKey]];
+    return _currentTunnelId != nil && [_currentTunnelId isEqualToString:note.userInfo[EmporterTunnelIdentifierUserInfoKey]];
 }
 
 - (void)_emporterTunnelStateDidChange:(NSNotification *)note {
     if ([self _isNotificationRelevantToTunnel:note] && _currentTunnel != nil) {
-        self.state = _currentTunnel.state;
-        self.conflictReason = _currentTunnel.conflictReason;
-        self.remoteURL = _currentTunnel.remoteUrl != nil ? [NSURL URLWithString:_currentTunnel.remoteUrl] : nil;
+        [self _reloadState];
     }
 }
 
