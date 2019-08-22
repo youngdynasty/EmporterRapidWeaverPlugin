@@ -10,6 +10,7 @@
 #import "Emporter.h"
 
 @class ERPreviewServerManager;
+@class ERService;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -72,27 +73,15 @@ NS_ASSUME_NONNULL_BEGIN
 /** A human-readable message describing why a remote URL could not be created. This value is non-nil only when the state is \c EmporterTunnelStateConflicted. */
 @property(nonatomic,nullable,readonly) NSString *conflictReason;
 
-/** The current state of the service. */
-@property(nonatomic,readonly) EmporterServiceState serviceState;
-
-/** A human-readable message describing why the service is offline. This value is non-nil only when the serviceState is \c EmporterServiceStateConflicted. */
-@property(nonatomic,readonly) NSString *serviceConflictReason;
-
 /** Create the tunnel in Emporter. */
 - (BOOL)create:(NSError **__nullable)outError;
 
 /** Dispose the current tunnel in Emporter. */
 - (void)dispose;
 
-@end
+/** The service managing the tunnel. */
+@property(nonatomic,readonly) ERService *service;
 
-
-@interface ERTunnel(Service)
-/** Restart the Emporter service
- \param outError An optional pointer to an error which will be non-nil if the service could not be restarted.
- \returns YES if the service was restarted.
- */
-+ (BOOL)restartService:(NSError **)outError;
 @end
 
 NS_ASSUME_NONNULL_END

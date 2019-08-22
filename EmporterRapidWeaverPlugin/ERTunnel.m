@@ -7,7 +7,9 @@
 //
 
 #import "ERTunnel.h"
+#import "ERService-Private.h"
 #import "ERPreviewServerManager.h"
+
 
 @interface ERTunnel()
 @property(nonatomic,nullable,setter=_setRemoteURL:) NSURL *remoteURL;
@@ -15,9 +17,6 @@
 
 @property(nonatomic,setter=_setState:) EmporterTunnelState state;
 @property(nonatomic,nullable,setter=_setConflictReason:) NSString *conflictReason;
-
-@property(nonatomic,setter=_setServiceState:) EmporterServiceState serviceState;
-@property(nonatomic,nullable,setter=_setServiceConflictReason:) NSString *serviceConflictReason;
 
 @property(nonatomic,setter=_setCurrentTunnel:) EmporterTunnel *_currentTunnel;
 @end
@@ -28,26 +27,6 @@
 @synthesize _currentTunnel = _currentTunnel;
 
 static void* kvoContext = &kvoContext;
-
-+ (Emporter *)_emporter {
-    // Emporter may return nil when it's not installed, but it may be installed in the near future
-    // We need to make initialization thread-safe without using dispatch_once for the Emporter ref
-    static Emporter *emporter = nil;
-    static dispatch_semaphore_t semaphore = NULL;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        semaphore = dispatch_semaphore_create(1);
-    });
-    
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    if (emporter == nil) {
-        emporter = [Emporter new];
-    }
-    dispatch_semaphore_signal(semaphore);
-    
-    return emporter;
-}
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
@@ -75,13 +54,14 @@ static void* kvoContext = &kvoContext;
     _name = plistValue(plist, @"name", [NSString class]);
     _state = EmporterTunnelStateDisconnected;
     
-    Emporter *emporter = Emporter.isRunning ? ERTunnel._emporter : nil;
-    if (emporter != nil) {
-        _serviceState = emporter.serviceState;
-        _serviceConflictReason = emporter.serviceConflictReason;
-    } else {
-        _serviceState = EmporterServiceStateSuspended;
-    }
+    static ERService *sharedService = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        sharedService = [[ERService alloc] init];
+    });
+
+    _service = sharedService;
     
     [_previewManager addObserver:self forKeyPath:@"urls" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:kvoContext];
     
@@ -89,10 +69,8 @@ static void* kvoContext = &kvoContext;
         [self addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:kvoContext];
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_emporterServiceStateDidChange:) name:EmporterServiceStateDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_emporterTunnelStateDidChange:) name:EmporterTunnelStateDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_emporterDidRemoveTunnel:) name:EmporterDidRemoveTunnelNotification object:nil];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(_applicationDidTerminate:) name:NSWorkspaceDidTerminateApplicationNotification object:nil];
     
     return self;
 }
@@ -104,7 +82,6 @@ static void* kvoContext = &kvoContext;
     
     [_previewManager removeObserver:self forKeyPath:@"urls"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
 }
 
 static id plistValue(NSDictionary *plist, NSString *key, Class class) {
@@ -132,6 +109,7 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
         bindingMap = @{
                        @"localURL": NSStringFromSelector(@selector(_localURLDidChange)),
                        @"name": NSStringFromSelector(@selector(_nameDidChange)),
+                       @"service.state": NSStringFromSelector(@selector(_serviceStateDidChange)),
                        };
     });
     return bindingMap;
@@ -161,33 +139,11 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
 - (BOOL)create:(NSError **)outError {
     dispatch_assert_queue(dispatch_get_main_queue());
     
-    NSError *error = nil;
-    Emporter *emporter = ERTunnel._emporter;
-    
-    if (_localURL == nil) {
-        error = [NSError errorWithDomain:NSPOSIXErrorDomain code:EPERM userInfo:@{NSLocalizedDescriptionKey: @"Preview server is not running."}];
-    } else if (emporter == nil) {
-        error = [NSError errorWithDomain:NSPOSIXErrorDomain code:ESRCH userInfo:@{NSLocalizedDescriptionKey: @"Emporter is not installed."}];
-    } else if (_currentTunnel == nil) {
-        // FIXME: There's a race condition (outside of our control) if Emporter is not running; we should launch and wait
-        
-        NSDictionary *tunnelProps = @{@"isTemporary": @(YES), @"name": _name ?: _defaultName ?: @""};
-        EmporterTunnel *tunnel = [emporter createTunnelWithURL:_localURL properties:tunnelProps error:&error];
-        
-        if (tunnel != nil) {
-            if ([emporter bindTunnel:tunnel toPid:NSProcessInfo.processInfo.processIdentifier error:&error]) {
-                self._currentTunnel = tunnel;
-            } else {
-                [tunnel delete];
-            }
-        }
+    if (_currentTunnel == nil) {
+        self._currentTunnel = [_service _createTunnel:self error:outError];
     }
     
-    if (outError != NULL) {
-        (*outError) = error;
-    }
-    
-    return error == nil;
+    return _currentTunnel != nil;
 }
 
 - (void)dispose {
@@ -224,25 +180,15 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
     }
 }
 
-- (BOOL)_isNotificationRelevant:(NSNotification *)note {
-    return note.object == ERTunnel._emporter;
+- (void)_serviceStateDidChange {
+    if (self.service.state == EmporterServiceStateSuspended) {
+        [self dispose];
+    }
 }
 
 - (BOOL)_isNotificationRelevantToTunnel:(NSNotification *)note{
-    if (![self _isNotificationRelevant:note]) {
-        return NO;
-    }
-    
     NSString *currentTunnelId = _currentTunnel != nil ? _currentTunnel.id : nil;
     return currentTunnelId != nil && [currentTunnelId isEqualToString:note.userInfo[EmporterTunnelIdentifierUserInfoKey]];
-}
-
-- (void)_emporterServiceStateDidChange:(NSNotification *)note {
-    Emporter *emporter = ERTunnel._emporter;
-    if ([self _isNotificationRelevant:note] && emporter != nil) {
-        self.serviceState = emporter.serviceState;
-        self.serviceConflictReason = emporter.serviceConflictReason;
-    }
 }
 
 - (void)_emporterTunnelStateDidChange:(NSNotification *)note {
@@ -256,43 +202,6 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
 - (void)_emporterDidRemoveTunnel:(NSNotification *)note {
     if ([self _isNotificationRelevantToTunnel:note]) {
         [self dispose];
-    }
-}
-
-- (void)_applicationDidTerminate:(NSNotification *)note {
-    NSRunningApplication *app = note.userInfo[NSWorkspaceApplicationKey];
-    if (app != nil && [app.bundleIdentifier containsString:@"net.youngdynasty.emporter"]) {
-        self.serviceState = EmporterServiceStateSuspended;
-        self.serviceConflictReason = nil;
-        self._currentTunnel = nil;
-        
-        self.state = EmporterTunnelStateDisconnected;
-        self.conflictReason = nil;
-    }
-}
-
-@end
-
-@implementation ERTunnel(Service)
-
-+ (BOOL)restartService:(NSError **)outError {
-    Emporter *emporter = ERTunnel._emporter;
-    
-    if (emporter == nil) {
-        if (outError != NULL) {
-            (*outError) = [NSError errorWithDomain:NSPOSIXErrorDomain code:ESRCH userInfo:@{NSLocalizedDescriptionKey: @"Emporter is not installed."}];
-        }
-        return NO;
-    }
-
-    switch (emporter.serviceState) {
-        case EmporterServiceStateConnected:
-        case EmporterServiceStateConnecting:
-            if (![emporter suspendService:outError]) {
-                return NO;
-            }
-        default:
-            return [emporter resumeService:outError];
     }
 }
 

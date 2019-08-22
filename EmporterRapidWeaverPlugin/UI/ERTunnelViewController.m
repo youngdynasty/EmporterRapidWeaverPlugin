@@ -8,6 +8,7 @@
 
 #import "ERTunnelViewController.h"
 #import "ERPreviewServerManager.h"
+#import "ERService.h"
 
 @interface ERTunnelViewController()
 @property(nonatomic,readonly) BOOL isBusy;
@@ -57,7 +58,7 @@
 }
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingSelectedTabIdentifier {
-    return [NSSet setWithObjects:@"tunnel.localURL", @"tunnel.serviceState", @"tunnel.state", nil];
+    return [NSSet setWithObjects:@"tunnel.localURL", @"tunnel.state", @"tunnel.service.state", nil];
 }
 
 - (NSString *)selectedTabIdentifier {
@@ -65,7 +66,7 @@
         return @"noLocalURL";
     }
     
-    switch (_tunnel.serviceState) {
+    switch (_tunnel.service.state) {
         case EmporterServiceStateConflicted:
             return @"error";
         case EmporterServiceStateConnecting:
@@ -85,7 +86,7 @@
 }
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingIsBusy {
-    return [NSSet setWithObjects:@"tunnel.serviceState", @"tunnel.state", nil];
+    return [NSSet setWithObjects:@"tunnel.state", @"tunnel.service.state", nil];
 }
 
 - (BOOL)isBusy {
@@ -94,7 +95,7 @@
         case EmporterTunnelStateConnecting:
             return YES;
         default:
-            return _tunnel.serviceState == EmporterServiceStateConnecting;
+            return _tunnel.service.state == EmporterServiceStateConnecting;
     }
 }
 
@@ -103,10 +104,10 @@
 - (IBAction)startSharing:(id)sender {
     NSError *error = nil;
     
-    switch (_tunnel.serviceState) {
+    switch (_tunnel.service.state) {
         case EmporterServiceStateSuspended:
         case EmporterServiceStateConflicted:
-            [ERTunnel restartService:&error] && [_tunnel create:&error];
+            [_tunnel.service restart:&error] && [_tunnel create:&error];
             break;
         default:
             [_tunnel create:&error];
@@ -124,6 +125,10 @@
 
 - (IBAction)openRemoteURL:(id)sender {
     _tunnel.remoteURL ? [[NSWorkspace sharedWorkspace] openURL:_tunnel.remoteURL] : NSBeep();
+}
+
+- (IBAction)openEmporter:(id)sender {
+    [_tunnel.service reveal];
 }
 
 @end

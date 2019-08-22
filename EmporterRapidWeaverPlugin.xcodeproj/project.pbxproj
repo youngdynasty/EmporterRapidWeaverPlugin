@@ -20,6 +20,8 @@
 		A63F764A22AD453E00B4EE05 /* libEmporterKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D1BB68229979E1000EB116 /* libEmporterKit.a */; };
 		A646529F22DA6E9E008449F8 /* ERTunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = A646529E22DA6E9E008449F8 /* ERTunnel.m */; };
 		A64652A022DA6E9E008449F8 /* ERTunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = A646529E22DA6E9E008449F8 /* ERTunnel.m */; };
+		A6808822230EA0EE0035B442 /* ERService.m in Sources */ = {isa = PBXBuildFile; fileRef = A6808821230EA0EE0035B442 /* ERService.m */; };
+		A6808823230EA0EE0035B442 /* ERService.m in Sources */ = {isa = PBXBuildFile; fileRef = A6808821230EA0EE0035B442 /* ERService.m */; };
 		A6D100032305B2200077A7D9 /* ERMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D100022305B2200077A7D9 /* ERMainViewController.m */; };
 		A6D100042305B2200077A7D9 /* ERMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D100022305B2200077A7D9 /* ERMainViewController.m */; };
 		A6D1000E2305CF5A0077A7D9 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6D1000D2305CF5A0077A7D9 /* AppIcon.icns */; };
@@ -96,6 +98,9 @@
 		A6372FED2305B039004CD746 /* ERWelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERWelcomeViewController.m; sourceTree = "<group>"; };
 		A646529D22DA6E9E008449F8 /* ERTunnel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERTunnel.h; sourceTree = "<group>"; };
 		A646529E22DA6E9E008449F8 /* ERTunnel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERTunnel.m; sourceTree = "<group>"; };
+		A6808820230EA0EE0035B442 /* ERService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERService.h; sourceTree = "<group>"; };
+		A6808821230EA0EE0035B442 /* ERService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERService.m; sourceTree = "<group>"; };
+		A6808824230EA60E0035B442 /* ERService-Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ERService-Private.h"; sourceTree = "<group>"; };
 		A6D100012305B2200077A7D9 /* ERMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERMainViewController.h; sourceTree = "<group>"; };
 		A6D100022305B2200077A7D9 /* ERMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERMainViewController.m; sourceTree = "<group>"; };
 		A6D1000D2305CF5A0077A7D9 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
@@ -216,6 +221,9 @@
 				A6D1BB7222997AD8000EB116 /* ERPlugin.m */,
 				A6D1BBA2229AEC7F000EB116 /* ERPreviewServerManager.h */,
 				A6D1BBA3229AEC7F000EB116 /* ERPreviewServerManager.m */,
+				A6808824230EA60E0035B442 /* ERService-Private.h */,
+				A6808820230EA0EE0035B442 /* ERService.h */,
+				A6808821230EA0EE0035B442 /* ERService.m */,
 				A646529D22DA6E9E008449F8 /* ERTunnel.h */,
 				A646529E22DA6E9E008449F8 /* ERTunnel.m */,
 				A6D1BB3122997953000EB116 /* Info.plist */,
@@ -449,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6808822230EA0EE0035B442 /* ERService.m in Sources */,
 				A6372FE32305A637004CD746 /* ERBigButtonCell.m in Sources */,
 				A6D1BB9A229AD48A000EB116 /* YDProcessNode.m in Sources */,
 				A6372FE52305A637004CD746 /* ERTunnelViewController.m in Sources */,
@@ -464,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6808823230EA0EE0035B442 /* ERService.m in Sources */,
 				A6372FE42305A637004CD746 /* ERBigButtonCell.m in Sources */,
 				A6D1BB93229AD464000EB116 /* main.m in Sources */,
 				A6372FE62305A637004CD746 /* ERTunnelViewController.m in Sources */,
