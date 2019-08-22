@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tabView fixedFrame="YES" drawsBackground="NO" type="noTabsNoBorder" initialItem="ufY-G0-GAH" translatesAutoresizingMaskIntoConstraints="NO" id="9RC-Gn-YS2">
-                    <rect key="frame" x="89" y="53" width="673" height="399"/>
+                    <rect key="frame" x="88" y="53" width="673" height="399"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>

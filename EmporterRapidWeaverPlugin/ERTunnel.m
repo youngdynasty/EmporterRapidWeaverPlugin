@@ -136,14 +136,45 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
 
 #pragma mark - State
 
-- (BOOL)create:(NSError **)outError {
-    dispatch_assert_queue(dispatch_get_main_queue());
+- (void)createWithCompletionHandler:(void(^)(NSError *))completionHandler {
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+
+    // Submit to Emporter in background
+    __block NSError *error = nil;
+    __block EmporterTunnel *tunnel = nil;
+
+    dispatch_group_async(group, backgroundQueue, ^{
+        switch (self.service.state) {
+            case EmporterServiceStateSuspended:
+            case EmporterServiceStateConflicted:
+                if (![self.service restart:&error]) {
+                    return;
+                }
+            default:
+                break;
+        }
+        
+        tunnel = [self.service _createTunnel:self error:&error];
+        if (tunnel == nil) {
+            return;
+        }
+        
+        // Update state on main thread and discard result if needed
+        dispatch_group_async(group, dispatch_get_main_queue(), ^{
+            if (self._currentTunnel == nil) {
+                self._currentTunnel = tunnel;
+            } else if (tunnel != nil) {
+                [tunnel delete];
+            }
+        });
+    });
     
-    if (_currentTunnel == nil) {
-        self._currentTunnel = [_service _createTunnel:self error:outError];
-    }
     
-    return _currentTunnel != nil;
+    // Invoke callback on background
+    dispatch_group_notify(group, backgroundQueue, ^{
+        completionHandler(error);
+    });
 }
 
 - (void)dispose {

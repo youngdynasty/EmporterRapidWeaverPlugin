@@ -11,9 +11,11 @@
 #import "ERService.h"
 
 @interface ERTunnelViewController()
+@property(nonatomic) NSUInteger createCount;
 @property(nonatomic,readonly) BOOL isBusy;
 @property(nonatomic,readonly) NSString *selectedTabIdentifier;
 @end
+
 
 @implementation ERTunnelViewController {
     IBOutlet NSTabView *__weak _tabView;
@@ -86,10 +88,14 @@
 }
 
 + (NSSet<NSString *> *)keyPathsForValuesAffectingIsBusy {
-    return [NSSet setWithObjects:@"tunnel.state", @"tunnel.service.state", nil];
+    return [NSSet setWithObjects:@"createCount", @"tunnel.state", @"tunnel.service.state", nil];
 }
 
 - (BOOL)isBusy {
+    if (_createCount > 0) {
+        return YES;
+    }
+    
     switch (_tunnel.state) {
         case EmporterTunnelStateInitializing:
         case EmporterTunnelStateConnecting:
@@ -102,21 +108,17 @@
 #pragma mark - Actions
 
 - (IBAction)startSharing:(id)sender {
-    NSError *error = nil;
+    self.createCount++;
     
-    switch (_tunnel.service.state) {
-        case EmporterServiceStateSuspended:
-        case EmporterServiceStateConflicted:
-            [_tunnel.service restart:&error] && [_tunnel create:&error];
-            break;
-        default:
-            [_tunnel create:&error];
-            break;
-    }
-    
-    if (error != nil) {
-        [[NSAlert alertWithError:error] runModal];
-    }
+    [_tunnel createWithCompletionHandler:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error != nil) {
+                [[NSAlert alertWithError:error] runModal];
+            }
+            
+            self.createCount--;
+        });
+    }];
 }
 
 - (IBAction)stopSharing:(id)sender {
