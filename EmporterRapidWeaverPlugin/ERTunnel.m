@@ -19,14 +19,16 @@
 @property(nonatomic,nullable,setter=_setConflictReason:) NSString *conflictReason;
 
 @property(nonatomic,setter=_setCurrentTunnel:) EmporterTunnel *_currentTunnel;
+@property(nonatomic,setter=_setDeferredTunnel:) EmporterTunnel *_deferredTunnel;
+@property(nonatomic,setter=_setCurrentTunnelId:) NSString *_currentTunnelId;
 @end
 
 #pragma mark -
 
-@implementation ERTunnel {
-    NSString *_currentTunnelId;
-}
+@implementation ERTunnel
 @synthesize _currentTunnel = _currentTunnel;
+@synthesize _deferredTunnel = _deferredTunnel;
+@synthesize _currentTunnelId = _currentTunnelId;
 
 static void* kvoContext = &kvoContext;
 
@@ -112,6 +114,7 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
                        @"name": NSStringFromSelector(@selector(_nameDidChange)),
                        @"service.state": NSStringFromSelector(@selector(_serviceStateDidChange)),
                        @"currentTunnel": NSStringFromSelector(@selector(_reloadState)),
+                       @"deferredTunnel": NSStringFromSelector(@selector(_reloadState)),
                        };
     });
     return bindingMap;
@@ -170,7 +173,12 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
         dispatch_semaphore_wait(tunnelSemaphore, DISPATCH_TIME_FOREVER);
         
         // Create a new tunnel if needed
-        tunnel = tunnel ?: [self.service _createTunnel:self error:&error];
+        BOOL didCreate = NO;
+        if (tunnel == nil) {
+            tunnel = [self.service _createTunnel:self error:&error];
+            didCreate = tunnel != nil;
+        }
+        
         if (tunnel == nil) {
             return;
         }
@@ -182,6 +190,17 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
         
         // Update state on main thread
         dispatch_group_async(group, dispatch_get_main_queue(), ^{
+            if (didCreate) {
+                // Work around an IPC race condition: newly created tunnels appear disconnected when created
+                self._deferredTunnel = tunnel;
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    if (self._deferredTunnel == tunnel) {
+                        self._deferredTunnel = nil;
+                    }
+                });
+            }
+            
             self._currentTunnel = tunnel;
         });
     });
@@ -242,15 +261,21 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
 
 - (void)_reloadState {
     if (_currentTunnel != nil) {
-        _currentTunnelId = _currentTunnelId ?: _currentTunnel.id;
-        self.state = _currentTunnel.state;
-        self.conflictReason = _currentTunnel.conflictReason;
-        self.remoteURL = _currentTunnel.remoteUrl != nil ? [NSURL URLWithString:_currentTunnel.remoteUrl] : nil;
+        EmporterTunnelState state = _currentTunnel.state;
+        if (state == EmporterTunnelStateDisconnected && _deferredTunnel == _currentTunnel) {
+            state = EmporterTunnelStateInitializing;
+        }
+        NSString *remoteURLString = state == EmporterTunnelStateConnected ? _currentTunnel.remoteUrl : nil;
+        
+        self._currentTunnelId = _currentTunnelId ?: _currentTunnel.id;
+        self.state = state;
+        self.conflictReason = state == EmporterTunnelStateConflicted ? _currentTunnel.conflictReason : nil;
+        self.remoteURL = remoteURLString != nil ? [NSURL URLWithString:remoteURLString] : nil;
     } else {
-        _currentTunnelId = nil;
-        self.remoteURL = nil;
-        self.conflictReason = nil;
+        self._currentTunnelId = nil;
         self.state = EmporterTunnelStateDisconnected;
+        self.conflictReason = nil;
+        self.remoteURL = nil;
     }
 }
 
