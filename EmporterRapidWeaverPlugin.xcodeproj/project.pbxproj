@@ -22,6 +22,8 @@
 		A64652A022DA6E9E008449F8 /* ERTunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = A646529E22DA6E9E008449F8 /* ERTunnel.m */; };
 		A6808822230EA0EE0035B442 /* ERService.m in Sources */ = {isa = PBXBuildFile; fileRef = A6808821230EA0EE0035B442 /* ERService.m */; };
 		A6808823230EA0EE0035B442 /* ERService.m in Sources */ = {isa = PBXBuildFile; fileRef = A6808821230EA0EE0035B442 /* ERService.m */; };
+		A680882B231024EB0035B442 /* ERLinkButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A680882A231024EB0035B442 /* ERLinkButtonCell.m */; };
+		A680882C231024EB0035B442 /* ERLinkButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A680882A231024EB0035B442 /* ERLinkButtonCell.m */; };
 		A6D100032305B2200077A7D9 /* ERMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D100022305B2200077A7D9 /* ERMainViewController.m */; };
 		A6D100042305B2200077A7D9 /* ERMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D100022305B2200077A7D9 /* ERMainViewController.m */; };
 		A6D1000E2305CF5A0077A7D9 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A6D1000D2305CF5A0077A7D9 /* AppIcon.icns */; };
@@ -101,6 +103,8 @@
 		A6808820230EA0EE0035B442 /* ERService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERService.h; sourceTree = "<group>"; };
 		A6808821230EA0EE0035B442 /* ERService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERService.m; sourceTree = "<group>"; };
 		A6808824230EA60E0035B442 /* ERService-Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ERService-Private.h"; sourceTree = "<group>"; };
+		A6808829231024EB0035B442 /* ERLinkButtonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERLinkButtonCell.h; sourceTree = "<group>"; };
+		A680882A231024EB0035B442 /* ERLinkButtonCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERLinkButtonCell.m; sourceTree = "<group>"; };
 		A6D100012305B2200077A7D9 /* ERMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERMainViewController.h; sourceTree = "<group>"; };
 		A6D100022305B2200077A7D9 /* ERMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERMainViewController.m; sourceTree = "<group>"; };
 		A6D1000D2305CF5A0077A7D9 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 			children = (
 				A6372FE12305A637004CD746 /* ERBigButtonCell.h */,
 				A6372FDE2305A637004CD746 /* ERBigButtonCell.m */,
+				A6808829231024EB0035B442 /* ERLinkButtonCell.h */,
+				A680882A231024EB0035B442 /* ERLinkButtonCell.m */,
 				A6D100012305B2200077A7D9 /* ERMainViewController.h */,
 				A6D100022305B2200077A7D9 /* ERMainViewController.m */,
 				A6372FDF2305A637004CD746 /* ERTunnelViewController.h */,
@@ -463,6 +469,7 @@
 				A6372FE52305A637004CD746 /* ERTunnelViewController.m in Sources */,
 				A6D1BB7322997AD8000EB116 /* ERPlugin.m in Sources */,
 				A6D100032305B2200077A7D9 /* ERMainViewController.m in Sources */,
+				A680882B231024EB0035B442 /* ERLinkButtonCell.m in Sources */,
 				A646529F22DA6E9E008449F8 /* ERTunnel.m in Sources */,
 				A6372FEE2305B039004CD746 /* ERWelcomeViewController.m in Sources */,
 				A6D1BBA4229AEC7F000EB116 /* ERPreviewServerManager.m in Sources */,
@@ -474,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6808823230EA0EE0035B442 /* ERService.m in Sources */,
+				A680882C231024EB0035B442 /* ERLinkButtonCell.m in Sources */,
 				A6372FE42305A637004CD746 /* ERBigButtonCell.m in Sources */,
 				A6D1BB93229AD464000EB116 /* main.m in Sources */,
 				A6372FE62305A637004CD746 /* ERTunnelViewController.m in Sources */,

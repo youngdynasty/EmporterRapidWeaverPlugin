@@ -219,6 +219,12 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
     });
 }
 
+- (void)edit {
+    if (_currentTunnel != nil) {
+        [_currentTunnel edit];
+    }
+}
+
 - (void)dispose {
     self._currentTunnel = nil;
 }

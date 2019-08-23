@@ -19,8 +19,11 @@
 
 
 @implementation ERTunnelViewController {
-    IBOutlet NSTabView *__weak _tabView;
+    __weak IBOutlet NSTabView * _tabView;
+    __weak IBOutlet NSButton *_remoteURLButton;
 }
+
+static void* kvoContext = &kvoContext;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wobjc-designated-initializers"
@@ -42,10 +45,26 @@
     
     _tunnel = tunnel;
     
+    [self addObserver:self forKeyPath:@"tunnel.remoteURL" options:NSKeyValueObservingOptionNew context:kvoContext];
+    
     return self;
 }
 
+- (void)dealloc {
+    [self removeObserver:self forKeyPath:@"tunnel.remoteURL"];
+}
+
 #pragma mark - View / bindings
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (context != kvoContext) {
+        return [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+    
+    if ([keyPath isEqualToString:@"tunnel.remoteURL"]) {
+        [self _layoutRemoteURL];
+    }
+}
 
 - (void)viewDidLayout {
     [super viewDidLayout];
@@ -57,6 +76,14 @@
         CGFloat centerY = floor((NSHeight(self.view.bounds) - NSHeight(childView.bounds)) / 2);
         
         childView.frame = NSOffsetRect(childView.bounds, centerX, centerY);
+    }
+}
+
+- (void)_layoutRemoteURL {
+    NSView *container = _remoteURLButton.superview;
+    if (container != nil) {
+        [_remoteURLButton sizeToFit];
+        [_remoteURLButton setFrameOrigin:NSMakePoint(NSMidX(container.bounds) - NSMidX(_remoteURLButton.bounds), NSMinY(_remoteURLButton.frame))];
     }
 }
 
@@ -138,38 +165,12 @@
     _tunnel.remoteURL ? [[NSWorkspace sharedWorkspace] openURL:_tunnel.remoteURL] : NSBeep();
 }
 
-- (IBAction)openEmporter:(id)sender {
-    [_tunnel.service reveal];
+- (IBAction)edit:(id)sender {
+    [_tunnel edit];
 }
 
-@end
-
-
-@interface _ERTunnelStateTransformer : NSValueTransformer
-@end
-
-@implementation _ERTunnelStateTransformer : NSValueTransformer
-
-+ (Class)transformedValueClass { return [NSString class]; }
-+ (BOOL)allowsReverseTransformation { return NO; }
-
-- (id)transformedValue:(id)value {
-    switch ((EmporterTunnelState) [(NSNumber *)value integerValue]) {
-        case EmporterTunnelStateInitializing:
-            return @"Initializing";
-        case EmporterTunnelStateDisconnecting:
-            return @"Disconnecting";
-        case EmporterTunnelStateDisconnected:
-            return @"Disconnected";
-        case EmporterTunnelStateConnecting:
-            return @"Connecting";
-        case EmporterTunnelStateConnected:
-            return @"Connected";
-        case EmporterTunnelStateConflicted:
-            return @"Conflicted";
-        default:
-            return @"Unknown";
-    }
+- (IBAction)openEmporter:(id)sender {
+    [_tunnel.service reveal];
 }
 
 @end

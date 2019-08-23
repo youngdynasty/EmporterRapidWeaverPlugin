@@ -79,6 +79,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** Publish the tunnel. The completion handler is invoked in a background queue. */
 - (void)publishWithCompletionHandler:(void(^)(NSError *__nullable))completionHandler;
 
+/** Edit the current tunnel in Emporter. */
+- (void)edit;
+
 /** Dispose the current tunnel in Emporter. */
 - (void)dispose;
 
