@@ -6,6 +6,8 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -15,25 +17,21 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.2</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>10</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Access to Emporter's scripting API is required to use this plugin.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 Young Dynasty EURL. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
 	<string>ERPlugin</string>
-	<key>RWAddonSupportURLString</key>
-	<string>https://emporter.app/rapidweaver-plugin</string>
 	<key>RWAddonAuthor</key>
 	<string>Young Dynasty EURL</string>
+	<key>RWAddonSupportURLString</key>
+	<string>https://github.com/youngdynasty/EmporterRapidWeaverPlugin</string>
 	<key>RWPluginAPIVersion</key>
 	<integer>4</integer>
-	<key>RWPluginSupportsSandbox</key>
-	<true/>
-	<key>CFBundleIconFile</key>
-	<string>AppIcon.icns</string>
-	<key>NSAppleEventsUsageDescription</key>
-	<string>Access to Emporter&apos;s scripting API is required to use this plugin.</string>
 	<key>RWPluginIconAddPageMenu</key>
 	<string>RWPluginIconAddPageMenu</string>
 	<key>RWPluginIconAddPageMenuSelected</key>
@@ -46,5 +44,11 @@
 	<string>RWPluginIconSourceList</string>
 	<key>RWPluginIconSourceListSelected</key>
 	<string>RWPluginIconSourceListSelected</string>
+	<key>RWPluginSupportsSandbox</key>
+	<true/>
+	<key>SUFeedURL</key>
+	<string>https://storage.googleapis.com/emporter.io/feeds/rapidweaver.xml</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
 </dict>
 </plist>

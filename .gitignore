@@ -4,4 +4,3 @@
 .*.pem
 build
 xcuserdata
-Vendor/openssl/

@@ -20,6 +20,7 @@
 		A63F764A22AD453E00B4EE05 /* libEmporterKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D1BB68229979E1000EB116 /* libEmporterKit.a */; };
 		A646529F22DA6E9E008449F8 /* ERTunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = A646529E22DA6E9E008449F8 /* ERTunnel.m */; };
 		A64652A022DA6E9E008449F8 /* ERTunnel.m in Sources */ = {isa = PBXBuildFile; fileRef = A646529E22DA6E9E008449F8 /* ERTunnel.m */; };
+		A66354042313E5AD00A13346 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = A66354012313E5AD00A13346 /* dsa_pub.pem */; };
 		A6808822230EA0EE0035B442 /* ERService.m in Sources */ = {isa = PBXBuildFile; fileRef = A6808821230EA0EE0035B442 /* ERService.m */; };
 		A6808823230EA0EE0035B442 /* ERService.m in Sources */ = {isa = PBXBuildFile; fileRef = A6808821230EA0EE0035B442 /* ERService.m */; };
 		A680882B231024EB0035B442 /* ERLinkButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A680882A231024EB0035B442 /* ERLinkButtonCell.m */; };
@@ -100,6 +101,7 @@
 		A6372FED2305B039004CD746 /* ERWelcomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERWelcomeViewController.m; sourceTree = "<group>"; };
 		A646529D22DA6E9E008449F8 /* ERTunnel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERTunnel.h; sourceTree = "<group>"; };
 		A646529E22DA6E9E008449F8 /* ERTunnel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERTunnel.m; sourceTree = "<group>"; };
+		A66354012313E5AD00A13346 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		A6808820230EA0EE0035B442 /* ERService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ERService.h; sourceTree = "<group>"; };
 		A6808821230EA0EE0035B442 /* ERService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ERService.m; sourceTree = "<group>"; };
 		A6808824230EA60E0035B442 /* ERService-Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ERService-Private.h"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				A6D1000D2305CF5A0077A7D9 /* AppIcon.icns */,
+				A66354012313E5AD00A13346 /* dsa_pub.pem */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6372FE72305A637004CD746 /* ERTunnelViewController.xib in Resources */,
+				A66354042313E5AD00A13346 /* dsa_pub.pem in Resources */,
 				A6372FEA2305B024004CD746 /* ERWelcomeViewController.xib in Resources */,
 				A6D1000E2305CF5A0077A7D9 /* AppIcon.icns in Resources */,
 			);
@@ -648,7 +652,7 @@
 					"$(PROJECT_DIR)/Vendor/RWPluginKit/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "Vendor/EmporterKit/**";
-				INFOPLIST_FILE = EmporterRapidWeaverPlugin/Info.plist;
+				INFOPLIST_FILE = Support/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = net.youngdynasty.emporter.rapidweaverplugin;
 				PRODUCT_NAME = Emporter;
@@ -668,7 +672,7 @@
 					"$(PROJECT_DIR)/Vendor/RWPluginKit/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "Vendor/EmporterKit/**";
-				INFOPLIST_FILE = EmporterRapidWeaverPlugin/Info.plist;
+				INFOPLIST_FILE = Support/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = net.youngdynasty.emporter.rapidweaverplugin;
 				PRODUCT_NAME = Emporter;

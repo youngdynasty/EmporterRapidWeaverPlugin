@@ -1,0 +1,54 @@
+#!/bin/bash
+set -e
+set -o pipefail
+
+pl_get() { plutil -extract "$1" xml1 -o - "$(dirname "$0")/../Resources/Info.plist" | xmllint -xpath '/plist/string/text()' -; }
+secure_note() { security find-generic-password -C note -s $1 -w | xxd -r -p | xmllint -xpath '/plist/dict/string/text()' -; }
+generate_signature() { openssl dgst -sha1 -binary "$2" | openssl dgst -sign <(secure_note "$1") | base64; }
+verify_signature() { openssl dgst -sha1 -binary "$3" | openssl dgst -verify "$1" -signature <(echo "$2" | openssl enc -base64 -d) 1> /dev/null; }
+fatal() { echo "$1" >&2; exit 1; }
+
+# Parse Arguments
+if [ "$#" -ne 2 ]; then fatal "Usage: $0 private-dsa-key-name archive-name"; fi
+if [ -z "$GITHUB_REPO" ]; then fatal "Missing GITHUB_REPO environment variable"; fi
+
+RELEASE_BUILD=$(pl_get CFBundleVersion)
+RELEASE_VERSION=$(pl_get CFBundleShortVersionString)
+RELEASE_URL=https://github.com/${GITHUB_REPO}/releases/download/v${RELEASE_VERSION}/$(basename $2)
+
+# Create a temporary work directory that's removed on exit 
+TEMP_DIR=$(mktemp -d)
+if [[ -z "$TEMP_DIR" || ! -d "$TEMP_DIR" ]]; then
+	fatal "Could not create temporary download directory"
+else	
+	trap "{ rm -fr '$TEMP_DIR'; }" EXIT
+fi
+
+# Download release
+RELEASE_ARCHIVE="$TEMP_DIR/$(basename $2)"
+curl -fsSL "$RELEASE_URL" -o "$RELEASE_ARCHIVE"
+
+RELEASE_ARCHIVE_SIZE=$(stat -f %z ${RELEASE_ARCHIVE})
+
+# Compute and verify signature
+PRIVATE_KEY=$1
+PUB_KEY="$(dirname "$0")/../Resources/dsa_pub.pem"
+
+RELEASE_SIGNATURE=$(generate_signature ${PRIVATE_KEY} ${RELEASE_ARCHIVE})
+verify_signature "${PUB_KEY}" "${RELEASE_SIGNATURE}" "${RELEASE_ARCHIVE}"
+
+# Output tidied XML
+echo "<?xml version='1.0' standalone='yes'?>
+	<rss xmlns:sparkle='http://www.andymatuschak.org/xml-namespaces/sparkle' version='2.0'>
+	<channel>
+		<item>
+			<pubDate>$(date -R)</pubDate>
+			<enclosure url='${RELEASE_URL}' length='${RELEASE_ARCHIVE_SIZE}' type='application/octet-stream'
+				sparkle:version='${RELEASE_BUILD}' sparkle:shortVersionString='${RELEASE_VERSION}' sparkle:dsaSignature='${RELEASE_SIGNATURE}'
+			/>
+			<title>Version ${RELEASE_VERSION}</title>
+			<sparkle:releaseNotesLink>https://github.com/${GITHUB_REPO}/releases/tag/v${RELEASE_VERSION}</sparkle:releaseNotesLink>
+		</item>
+	</channel> 
+	</rss>
+" | xmllint --format -
