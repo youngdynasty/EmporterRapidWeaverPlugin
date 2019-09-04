@@ -10,6 +10,7 @@
 #import "ERMainViewController.h"
 
 @implementation ERPlugin {
+    ERTunnel *_tunnel;
     ERMainViewController *_viewController;
 }
 
@@ -29,8 +30,8 @@
     if (self == nil)
         return nil;
     
-    [[[self class] _instances] addObject:self];
-
+    [self _sharedInit];
+    
     return self;
 }
 
@@ -39,16 +40,39 @@
     if (self == nil)
         return nil;
     
-    [[[self class] _instances] addObject:self];
-
+    [self _sharedInit];
+    
     return self;
 }
 
+- (void)_sharedInit {
+    [[[self class] _instances] addObject:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_windowWillClose:) name:NSWindowWillCloseNotification object:nil];
+}
+
 - (void)dealloc {
+    if (_tunnel != nil) {
+        [_tunnel dispose];
+    }
+    
     [[[self class] _instances] removeObject:self];
 }
 
+- (NSWindow *)window {
+    return self.document ? self.document.window : nil;
+}
+
+- (void)_windowWillClose:(NSNotification *)note {
+    NSWindow *window = note.object;
+    if (window != nil && window == self.window && _tunnel != nil) {
+        [_tunnel dispose];
+    }
+}
+
 #pragma mark - RWPlugin / RWAbstractPlugin
+
++ (BOOL)initializeClass:(NSBundle *)aBundle { return YES; }
 
 + (BOOL)canCreateNewPage:(NSError **)errorRef currentPages:(NSArray *)currentPages {
     for (ERPlugin *instance in [[self class] _instances]) {
@@ -64,18 +88,29 @@
     return YES;
 }
 
-+ (BOOL)initializeClass:(NSBundle *)aBundle {
-    return YES;
+- (ERTunnel *)tunnel {
+    if (_tunnel == nil) {
+        NSURL *workingDirectory = [NSURL fileURLWithPath:[[self tempFilesDirectory:nil] stringByDeletingLastPathComponent] isDirectory:YES];
+        _tunnel = [[ERTunnel alloc] initWithTempDocumentDirectoryURL:workingDirectory];
+    }
+    
+    return _tunnel;
 }
 
 - (NSViewController *)editingViewController {
     if (_viewController == nil) {
-        NSURL *workingDirectory = [NSURL fileURLWithPath:[[self tempFilesDirectory:nil] stringByDeletingLastPathComponent] isDirectory:YES];
-        ERTunnel *tunnel = [[ERTunnel alloc] initWithTempDocumentDirectoryURL:workingDirectory];
-        _viewController = [[ERMainViewController alloc] initWithTunnel:tunnel document:self.document];
+        _viewController = [[ERMainViewController alloc] initWithTunnel:self.tunnel document:self.document];
     }
     
     return _viewController;
+}
+
+- (void)pluginWasDeselected {
+    if (self.page == nil || ![self.allPagesUsingPlugin ?: @[] containsObject:self.page]) {
+        if (_tunnel != nil) {
+            [_tunnel dispose];
+        }
+    }
 }
 
 #pragma mark - RWPluginExport (disabled)
