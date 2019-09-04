@@ -47,11 +47,15 @@
 
 - (void)_sharedInit {
     [[[self class] _instances] addObject:self];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_windowWillClose:) name:NSWindowWillCloseNotification object:nil];
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self _pluginWasUnloaded];
+}
+
+- (void)_pluginWasUnloaded {
     if (_tunnel != nil) {
         [_tunnel dispose];
     }
@@ -59,14 +63,10 @@
     [[[self class] _instances] removeObject:self];
 }
 
-- (NSWindow *)window {
-    return self.document ? self.document.window : nil;
-}
-
 - (void)_windowWillClose:(NSNotification *)note {
     NSWindow *window = note.object;
-    if (window != nil && window == self.window && _tunnel != nil) {
-        [_tunnel dispose];
+    if (window != nil && window == self.window) {
+        [self _pluginWasUnloaded];
     }
 }
 
@@ -97,6 +97,10 @@
     return _tunnel;
 }
 
+- (NSWindow *)window {
+    return self.document ? self.document.window : nil;
+}
+
 - (NSViewController *)editingViewController {
     if (_viewController == nil) {
         _viewController = [[ERMainViewController alloc] initWithTunnel:self.tunnel document:self.document];
@@ -107,9 +111,7 @@
 
 - (void)pluginWasDeselected {
     if (self.page == nil || ![self.allPagesUsingPlugin ?: @[] containsObject:self.page]) {
-        if (_tunnel != nil) {
-            [_tunnel dispose];
-        }
+        [self _pluginWasUnloaded];
     }
 }
 
