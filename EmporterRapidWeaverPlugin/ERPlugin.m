@@ -29,7 +29,7 @@
     if (self == nil)
         return nil;
     
-    [[[self class] _instances] removeObject:self];
+    [[[self class] _instances] addObject:self];
 
     return self;
 }
@@ -39,7 +39,7 @@
     if (self == nil)
         return nil;
     
-    [[[self class] _instances] removeObject:self];
+    [[[self class] _instances] addObject:self];
 
     return self;
 }
