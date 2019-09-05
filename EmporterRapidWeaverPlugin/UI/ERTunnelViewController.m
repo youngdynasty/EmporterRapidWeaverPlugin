@@ -149,7 +149,18 @@ static void* kvoContext = &kvoContext;
     [_tunnel publishWithCompletionHandler:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error != nil) {
-                [[NSAlert alertWithError:error] runModal];
+                NSError *normalizedError = error;
+                
+                if (!self._isRapidWeaverAtLeast8_3) {
+                    NSDictionary *errorInfo = @{NSLocalizedDescriptionKey: @"RapidWeaver v8.3+ is required in order to share data with Emporter.",
+                                                NSLocalizedRecoverySuggestionErrorKey: @"Please update to the latest version of RapidWeaver to continue.",
+                                                NSUnderlyingErrorKey: error };
+                    normalizedError = [NSError errorWithDomain:NSCocoaErrorDomain code:NSFeatureUnsupportedError userInfo:errorInfo];
+
+                    NSLog(@"Emporter could not publish URL: %@", error);
+                }
+                
+                [[NSAlert alertWithError:normalizedError] runModal];
             }
             
             self.publishCount--;
@@ -171,6 +182,16 @@ static void* kvoContext = &kvoContext;
 
 - (IBAction)openEmporter:(id)sender {
     [_tunnel.service reveal];
+}
+
+#pragma mark -
+
+- (BOOL)_isRapidWeaverAtLeast8_3 {
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary] ?: @{};
+    NSString *versionString = infoDictionary[(NSString *)kCFBundleVersionKey] ?: @"";
+    NSCharacterSet *nonNumericCharacters = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    
+    return [[versionString  stringByTrimmingCharactersInSet:nonNumericCharacters] integerValue] >= 20799;
 }
 
 @end

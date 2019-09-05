@@ -165,14 +165,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A6372FCF2305A0DE004CD746 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
-			path = Support/Resources;
-			sourceTree = SOURCE_ROOT;
-		};
 		A6372FD22305A0ED004CD746 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,7 +267,6 @@
 		A6D1BB88229AD463000EB116 /* Playground */ = {
 			isa = PBXGroup;
 			children = (
-				A6372FCF2305A0DE004CD746 /* Resources */,
 				A6D1BB89229AD463000EB116 /* AppDelegate.h */,
 				A6D1BB8A229AD463000EB116 /* AppDelegate.m */,
 				A6D1BB8C229AD464000EB116 /* Assets.xcassets */,
