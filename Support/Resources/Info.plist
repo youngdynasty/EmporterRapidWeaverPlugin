@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>0.9</string>
 	<key>CFBundleVersion</key>
-	<string>10</string>
+	<string>15</string>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>Access to Emporter's scripting API is required to use this plugin.</string>
 	<key>NSHumanReadableCopyright</key>
@@ -37,11 +37,11 @@
 	<key>RWPluginIconAddPageMenuSelected</key>
 	<string>RWPluginIconAddPageMenuSelected</string>
 	<key>RWPluginIconSmall</key>
-	<string>plugin_icon</string>
+	<string>AppIcon.icns</string>
 	<key>RWPluginIconSmallSelected</key>
-	<string>plugin_icon_active</string>
+	<string>AppIcon.icns</string>
 	<key>RWPluginIconSourceList</key>
-	<string>RWPluginIconSourceList</string>
+	<string>AppIcon.icns</string>
 	<key>RWPluginIconSourceListSelected</key>
 	<string>RWPluginIconSourceListSelected</string>
 	<key>RWPluginSupportsSandbox</key>
