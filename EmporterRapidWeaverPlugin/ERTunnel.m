@@ -232,7 +232,9 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
 #pragma mark - Synchronization
 
 - (void)_setCurrentTunnel:(EmporterTunnel *)currentTunnel {
-    dispatch_assert_queue(dispatch_get_main_queue());
+    if (@available(macOS 10.12, *)) {
+        dispatch_assert_queue(dispatch_get_main_queue());
+    }
     
     if (_currentTunnel == currentTunnel) {
         return;
@@ -249,7 +251,9 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
 }
 
 - (void)_localURLDidChange {
-    dispatch_assert_queue(dispatch_get_main_queue());
+    if (@available(macOS 10.12, *)) {
+        dispatch_assert_queue(dispatch_get_main_queue());
+    }
     
     if (_currentTunnel != nil) {
         NSNumber *port = _localURL != nil ? _localURL.port : nil;
@@ -260,7 +264,9 @@ static id plistValue(NSDictionary *plist, NSString *key, Class class) {
 }
 
 - (void)_nameDidChange {
-    dispatch_assert_queue(dispatch_get_main_queue());
+    if (@available(macOS 10.12, *)) {
+        dispatch_assert_queue(dispatch_get_main_queue());
+    }
     
     if (_currentTunnel != nil) {
         _currentTunnel.name = _name ?: _defaultName ?: @"";

@@ -131,7 +131,9 @@ static void* _qContext = &_qContext;
 #pragma mark - URL management
 
 - (BOOL)_reloadServerProcessNodes {
-    dispatch_assert_queue(_q);
+    if (@available(macOS 10.12, *)) {
+        dispatch_assert_queue(_q);
+    }
     
     YDProcessNode *rwProcessNode = [[YDProcessNode currentRootNode] childWithPid:_rapidWeaver.processIdentifier];
     if (rwProcessNode == nil) {
@@ -150,7 +152,9 @@ static void* _qContext = &_qContext;
 }
 
 - (void)_setServerProcessNodes:(NSSet *__nonnull)serverProcessNodes {
-    dispatch_assert_queue(_q);
+    if (@available(macOS 10.12, *)) {
+        dispatch_assert_queue(_q);
+    }
     
     if (![_serverProcessNodes isEqualToSet:serverProcessNodes]) {
         _serverProcessNodes = serverProcessNodes;
@@ -159,7 +163,9 @@ static void* _qContext = &_qContext;
 }
 
 - (void)_serverProcessNodesDidChange {
-    dispatch_assert_queue(_q);
+    if (@available(macOS 10.12, *)) {
+        dispatch_assert_queue(_q);
+    }
     
     NSMutableSet *urls = [NSMutableSet set];
     for (YDProcessNode *node in _serverProcessNodes) {
