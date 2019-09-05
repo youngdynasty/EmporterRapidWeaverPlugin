@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>CFBundleVersion</key>
-	<string>16</string>
+	<string>19</string>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>Access to Emporter's scripting API is required to use this plugin.</string>
 	<key>NSHumanReadableCopyright</key>
