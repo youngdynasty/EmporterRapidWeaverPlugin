@@ -1,8 +1,10 @@
-# Emporter Rapid Weaver Plugin
+# Emporter RapidWeaver Plugin
+
+![Emporter RapidWeaver Plugin](https://emporter.app/graphics/emporter.rapidweaverplugin.jpg)
 
 Share your [RapidWeaver](https://www.realmacsoftware.com/rapidweaver/) project's previews over HTTPS, instantly, _without_ publishing.
 
-Emporter creates a secure URL to your Mac which can be shared anywhere. The plugin automatically configures Emporter so that its URL points to your RapidWeaver project's preview.
+[Emporter](https://emporter.app) creates a secure URL to your Mac which can be shared anywhere. The plugin automatically configures Emporter so that its URL points to your RapidWeaver project's preview.
 
 Use it to get help on the [RapidWeaver forum](https://forums.realmacsoftware.com/c/rapidweaver) or just to share your project's progress before it goes live.
 
